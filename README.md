@@ -1,4 +1,4 @@
-# Laravel 8 密碼暴露驗證
+# Laravel 9 密碼暴露驗證
 
 引入 divineomega 的 laravel-password-exposed-validation-rule 套件來擴增密碼暴露驗證，近年來大型網路服務被駭客入侵，竊取用戶個資的新聞層出不窮，只要一不小心，可能就是數十萬，甚至數百萬筆使用者資料被公佈在網路上，雖然大部分的服務都會以加密方式來處理使用者的密碼，但要是密碼組合太過簡單，也是有可能遭到破解的。
 
@@ -30,5 +30,5 @@ $ npm install && npm run dev
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/485Fk3d.png)
+![](https://i.imgur.com/GnL6r7h.png)
 > 記得更換一下常用的密碼，以增加帳戶安全性

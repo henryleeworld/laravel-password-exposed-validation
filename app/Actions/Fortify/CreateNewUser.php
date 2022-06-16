@@ -7,6 +7,7 @@ use DivineOmega\LaravelPasswordExposedValidationRule\PasswordExposed;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -23,7 +24,8 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => [$this->passwordRules(), (new PasswordExposed())->setMessage(trans('global.register.content.password_is_not_secure'))],
+            'password' => [$this->passwordRules(), (new PasswordExposed())->setMessage(trans('validation.not_secure'))],
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
         return User::create([
