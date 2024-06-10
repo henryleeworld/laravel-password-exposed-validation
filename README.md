@@ -1,6 +1,6 @@
-# Laravel 10 密碼暴露驗證
+# Laravel 11 密碼暴露驗證
 
-引入 foxengineers 的 laravel-password-exposed-validation-rule 套件來擴增密碼暴露驗證，近年來大型網路服務被駭客入侵，竊取用戶個資的新聞層出不窮，只要一不小心，可能就是數十萬，甚至數百萬筆使用者資料被公佈在網路上，雖然大部分的服務都會以加密方式來處理使用者的密碼，但要是密碼組合太過簡單，也是有可能遭到破解的。
+引入 dilneiss 的 laravel-password-exposed-validation-rule 套件來擴增密碼暴露驗證，近年來大型網路服務被駭客入侵，竊取用戶個資的新聞層出不窮，只要一不小心，可能就是數十萬，甚至數百萬筆使用者資料被公佈在網路上，雖然大部分的服務都會以加密方式來處理使用者的密碼，但要是密碼組合太過簡單，也是有可能遭到破解的。
 
 ## 使用方式
 - 把整個專案複製一份到你的電腦裡，這裡指的「內容」不是只有檔案，而是指所有整個專案的歷史紀錄、分支、標籤等內容都會複製一份下來。
@@ -20,9 +20,13 @@ $ php artisan key:generate
 ```sh
 $ php artisan migrate
 ```
-- 執行安裝 Laravel Mix 引用的依賴項目，並執行所有 Mix 任務。
+- 執行安裝 Vite 和 Laravel 擴充套件引用的依賴項目。
 ```sh
-$ npm install && npm run dev
+$ npm install
+```
+- 執行正式環境版本化資源管道並編譯。
+```sh
+$ npm run build
 ```
 - 在瀏覽器中輸入已定義的路由 URL 來訪問，例如：http://127.0.0.1:8000。
 - 你可以經由 `/register` 來進行註冊。
@@ -30,5 +34,8 @@ $ npm install && npm run dev
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/raHjs3e.png)
-> 記得更換一下常用的密碼，以增加帳戶安全性
+![](https://i.imgur.com/rlIG1IH.png)
+> 建議在密碼已知被竊取的情況下才需更換密碼
+
+![](https://i.imgur.com/WmTNbxl.png)
+> 藉由增加密碼的長度和複雜性，可以大大增加破解密碼所需的時間和資源
