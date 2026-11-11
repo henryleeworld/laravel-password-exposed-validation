@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use DivineOmega\LaravelPasswordExposedValidationRule\PasswordExposed;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use JordJD\LaravelPasswordExposedValidationRule\PasswordNotExposed;
 
 class NewPasswordController extends Controller
 {
@@ -26,14 +27,14 @@ class NewPasswordController extends Controller
     /**
      * Handle an incoming new password request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults(), (new PasswordExposed())->setMessage(trans('validation.not_secure'))],
+            'password' => ['required', 'confirmed', Rules\Password::defaults(), (new PasswordNotExposed())->setMessage(trans('validation.not_secure'))],
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we

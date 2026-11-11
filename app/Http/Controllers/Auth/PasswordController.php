@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use DivineOmega\LaravelPasswordExposedValidationRule\PasswordExposed;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use JordJD\LaravelPasswordExposedValidationRule\PasswordNotExposed;
 
 class PasswordController extends Controller
 {
@@ -17,7 +17,7 @@ class PasswordController extends Controller
     {
         $validated = $request->validateWithBag('updatePassword', [
             'current_password' => ['required', 'current_password'],
-            'password' => ['required', Password::defaults(), 'confirmed', (new PasswordExposed())->setMessage(trans('validation.not_secure'))],
+            'password' => ['required', Password::defaults(), (new PasswordNotExposed())->setMessage(trans('validation.not_secure')), 'confirmed'],
         ]);
 
         $request->user()->update([
